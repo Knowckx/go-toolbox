@@ -1,24 +1,44 @@
-# go-toolbox AI 说明文档
+# go-toolbox
 
-## 项目说明
+## 项目
 
-`go-toolbox` 是一个面向日常开发和文件处理场景的 Go 小工具集合项目。
+- Go 小工具集合
+- 独立工具模式
+- `./cmd/<tool>/` 放入口
+- `./internal/tools/<tool>/` 放实现
+- `./bin/` 放编译产物
 
-当前项目采用“独立工具模式”：
-
-- 每个工具一个独立入口，放在 `./cmd/<tool-name>/`
-- 每个工具的具体实现放在 `./internal/tools/<tool-name>/`
-- 编译产物统一输出到 `./bin/`
-
-
-## 当前工具列表
+## 工具
 
 ### `find-and-copy`
-用于递归遍历指定源目录，查找符合后缀条件的文件，并复制到指定目标目录。
 
-- 使用示例
-- 
+- 递归遍历 `-src`
+- 匹配 `-ext`
+- 复制到 `-folder`
+- `-folder` 可不传
+- 不传时，目标直接在 `-src` 下
+- 目标只保留文件名，不保留父目录
+- 重名会打印提示并跳过
+- 最后只打印成功数量
+
+### 参数
+
+- `-src`
+  - 源目录
+  - 必填
+
+- `-ext`
+  - 后缀
+  - 必填
+
+- `-folder`
+  - 目标子文件夹名
+  - 可选
+
+### 示例
+
 ```powershell
 go build -o .\bin\find-and-copy.exe .\cmd\find-and-copy
-.\bin\find-and-copy.exe -src E:\data\A -dst E:\data\out -ext .txt
+.\bin\find-and-copy.exe -src E:\data\A -ext .txt
+.\bin\find-and-copy.exe -src E:\data\A -ext .txt -folder out
 ```

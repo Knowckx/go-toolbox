@@ -11,14 +11,14 @@ import (
 	"strings"
 )
 
-// Run finds files under src that match ext and copies them into dst.
+// Run finds files under src that match ext and copies them into the target.
 func Run(args []string) error {
 	fs := flag.NewFlagSet("find-and-copy", flag.ContinueOnError)
 	fs.SetOutput(io.Discard)
 
 	var (
 		srcPath = fs.String("src", "", "source directory")
-		dstPath = fs.String("dst", "", "destination directory")
+		folder  = fs.String("folder", "", "subfolder under source directory")
 		ext     = fs.String("ext", "", "file suffix to match")
 	)
 
@@ -33,9 +33,6 @@ func Run(args []string) error {
 	if strings.TrimSpace(*srcPath) == "" {
 		return errors.New("missing required flag: -src")
 	}
-	if strings.TrimSpace(*dstPath) == "" {
-		return errors.New("missing required flag: -dst")
-	}
 	if strings.TrimSpace(*ext) == "" {
 		return errors.New("missing required flag: -ext")
 	}
@@ -43,10 +40,6 @@ func Run(args []string) error {
 	srcRoot, err := filepath.Abs(*srcPath)
 	if err != nil {
 		return fmt.Errorf("resolve source path: %w", err)
-	}
-	dstRoot, err := filepath.Abs(*dstPath)
-	if err != nil {
-		return fmt.Errorf("resolve destination path: %w", err)
 	}
 
 	srcInfo, err := os.Stat(srcRoot)
@@ -57,25 +50,39 @@ func Run(args []string) error {
 		return fmt.Errorf("source path is not a directory: %s", srcRoot)
 	}
 
+	dstRoot := srcRoot
+	if trimmedFolder := strings.TrimSpace(*folder); trimmedFolder != "" {
+		dstRoot = filepath.Join(srcRoot, trimmedFolder)
+	}
 	if err := os.MkdirAll(dstRoot, 0o755); err != nil {
 		return fmt.Errorf("create destination directory: %w", err)
 	}
-	if samePath(srcRoot, dstRoot) {
-		return fmt.Errorf("source and destination must be different: %s", srcRoot)
-	}
 
 	matchExt := normalizeSuffix(*ext)
-	return walkDFS(srcRoot, dstRoot, func(path string) error {
+	copiedCount := 0
+	seenTargets := make(map[string]string)
+	skipRoot := ""
+	if !samePath(srcRoot, dstRoot) {
+		skipRoot = dstRoot
+	}
+
+	err = walkDFS(srcRoot, skipRoot, func(path string) error {
 		if !strings.HasSuffix(strings.ToLower(path), matchExt) {
 			return nil
 		}
 
-		relPath, err := filepath.Rel(srcRoot, path)
-		if err != nil {
-			return fmt.Errorf("resolve relative path for %s: %w", path, err)
+		targetPath := filepath.Join(dstRoot, filepath.Base(path))
+		targetKey := strings.ToLower(targetPath)
+		if firstSource, exists := seenTargets[targetKey]; exists {
+			fmt.Printf("duplicate file skipped: %s -> %s (already used by %s)\n", path, targetPath, firstSource)
+			return nil
 		}
+		if _, err := os.Stat(targetPath); err == nil {
+			fmt.Printf("duplicate file skipped: %s -> %s (already exists)\n", path, targetPath)
+			return nil
+		}
+		seenTargets[targetKey] = path
 
-		targetPath := filepath.Join(dstRoot, relPath)
 		if err := os.MkdirAll(filepath.Dir(targetPath), 0o755); err != nil {
 			return fmt.Errorf("create target directory for %s: %w", targetPath, err)
 		}
@@ -83,14 +90,20 @@ func Run(args []string) error {
 			return err
 		}
 
-		fmt.Printf("%s -> %s\n", path, targetPath)
+		copiedCount++
 		return nil
 	})
+	if err != nil {
+		return err
+	}
+
+	fmt.Printf("successfully copied: %d\n", copiedCount)
+	return nil
 }
 
 func printUsage() {
 	fmt.Println("find-and-copy")
-	fmt.Println("usage: find-and-copy -src <source> -dst <target> -ext <suffix>")
+	fmt.Println("usage: find-and-copy -src <source> -ext <suffix> [-folder <name>]")
 }
 
 func normalizeSuffix(ext string) string {
@@ -115,18 +128,27 @@ func walkDFS(root, skipRoot string, visit func(string) error) error {
 	})
 
 	for _, entry := range entries {
+		if entry.IsDir() {
+			continue
+		}
 		fullPath := filepath.Join(root, entry.Name())
 		if skipRoot != "" && isSameOrDescendant(fullPath, skipRoot) {
 			continue
 		}
-		if entry.IsDir() {
-			if err := walkDFS(fullPath, skipRoot, visit); err != nil {
-				return err
-			}
+		if err := visit(fullPath); err != nil {
+			return err
+		}
+	}
+
+	for _, entry := range entries {
+		if !entry.IsDir() {
 			continue
 		}
-
-		if err := visit(fullPath); err != nil {
+		fullPath := filepath.Join(root, entry.Name())
+		if skipRoot != "" && isSameOrDescendant(fullPath, skipRoot) {
+			continue
+		}
+		if err := walkDFS(fullPath, skipRoot, visit); err != nil {
 			return err
 		}
 	}
