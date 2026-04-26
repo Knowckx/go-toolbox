@@ -7,7 +7,8 @@
 - `./cmd/<tool>/` 放入口
 - `./internal/tools/<tool>/` 放实现
 - `./bin/` 放编译产物
-
+- `./pc-init` 放一些简单运维脚本
+- 
 ## 工具
 
 ### `find-and-copy`
