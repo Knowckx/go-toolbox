@@ -42,4 +42,7 @@
 go build -o .\bin\find-and-copy.exe .\cmd\find-and-copy
 .\bin\find-and-copy.exe -src E:\data\A -ext .txt
 .\bin\find-and-copy.exe -src E:\data\A -ext .txt -folder out
+
+.\bin\find-and-copy.exe -src D:\AsukaFiles\AsuMusic2.0\临时_全部 -ext .mp3
 ```
+
