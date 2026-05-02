@@ -70,7 +70,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple # 使�
 scoop install main/go
 go env -w GOPROXY=https://goproxy.cn,direct
 
-# scoop install hugo-extended # Blog
+# scoop install hugo-extended # 为了支持stack这种主题
 # scoop install mingw # MinGW-w64 C语言编译器 有一些包会需要
 
 # -------------> 前端web相关
