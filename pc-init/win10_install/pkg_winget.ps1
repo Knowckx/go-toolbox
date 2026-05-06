@@ -34,12 +34,16 @@ winget install Microsoft.WindowsTerminal
 winget install --id Microsoft.VisualStudioCode -e
 
 # Codex
-winget install Codex -s msstore
+winget install Codex
 
 
 winget install --id PixPin.PixPin
 
+
 # --------------------------> App应用软件
+winget install Tencent.TIM
+
+
 # # 应用软件 - 后缀名打开
 # choco install mpc-be # 视频播放
 
