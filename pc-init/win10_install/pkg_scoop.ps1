@@ -12,7 +12,10 @@ scoop config  # 看一下自定义安装中配置的文件夹正常不
 # 不要添加国内镜像源 挂代理就够了 
 
 # 必须加代理 因为就算我换了国内的镜像  scoop下载存放于github软件时 比如v2rayn 他还是需要去访问github
-scoop config proxy 127.0.0.1:7890 # 回退 scoop config rm proxy
+scoop config proxy 127.0.0.1:7890 
+
+# 回退 scoop config rm proxy
+# 
 
 # --------------------------> 基础设施软件
 scoop update
@@ -20,7 +23,7 @@ scoop install aria2 # 安装并启用多线程下载
 scoop config aria2-enabled true
 
 scoop install v2rayn-desktop # Avalonia版本 跨平台UI
-
+scoop install extras/clash-verge-rev # 另一个梯子软件
 
 
 
