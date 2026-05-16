@@ -22,9 +22,9 @@ scoop update
 scoop install aria2 # 安装并启用多线程下载
 scoop config aria2-enabled true
 
-scoop install v2rayn-desktop # Avalonia版本 跨平台UI
+# scoop install v2rayn-desktop # 梯子软件 Avalonia版本 跨平台UI
 scoop install extras/clash-verge-rev # 另一个梯子软件
-
+scoop install extras/proxybridge # 流量反向代理
 
 
 

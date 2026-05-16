@@ -12,7 +12,7 @@ $TargetVaults = @(
     @{ Name = "4-绿洲"; Path = "D:\AsukaFiles\AsuObsidianStore\4-绿洲" },
     @{ Name = "5-生活"; Path = "D:\AsukaFiles\AsuObsidianStore\5-生活" },
     @{ Name = "6-打工人"; Path = "D:\AsukaFiles\AsuObsidianStore\6-打工人" },
-    @{ Name = "alchemy-doc"; Path = "E:\dev\py\alchemy-dev\ai_doc" }
+    @{ Name = "alchemy-doc"; Path = "E:\dev\py\alchemy-dev\alchemy_docs" }
 )
 
 function Test-VaultPath {
@@ -37,7 +37,7 @@ function Test-VaultPath {
 $ItemsToSync = @(
     "plugins",  # 社区插件的物理文件
     "community-plugins.json", # 已启用的社区插件列表
-    "core-plugins.json",  # 已启用的核心插件列表
+    # "core-plugins.json",  # 已启用的核心插件列表
 
     "snippets",  # CSS 代码片段
     "appearance.json", # 外观设置（主题、字体、颜色、窗口边框等）
