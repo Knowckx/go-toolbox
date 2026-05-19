@@ -36,14 +36,14 @@ function Test-VaultPath {
 # 建议只同步插件、代码片段和快捷键，跳过 workspace.json
 $ItemsToSync = @(
     "plugins",  # 社区插件的物理文件
-    "community-plugins.json", # 已启用的社区插件列表
-    # "core-plugins.json",  # 已启用的核心插件列表
+    "core-plugins.json",  # 已启用的核心插件列表
 
     "snippets",  # CSS 代码片段
     "appearance.json", # 外观设置（主题、字体、颜色、窗口边框等）
     "hotkeys.json", # 自定义快捷键
     "app.json" # 基础应用设置（如：附件存放路径、忽略文件等）
 
+    # "community-plugins.json", # 已启用的社区插件列表 
     # "graph.json", # 关系图谱的设置（颜色、力导向参数等） | 不建议同步 每个库的图谱密度不同
     # "workspace.json",  # 工作区布局（当前打开了哪些文件、侧边栏宽度、分屏状态） | 不建议同步 每个库的文件名不同
 )

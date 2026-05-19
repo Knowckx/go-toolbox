@@ -22,23 +22,22 @@ Insert::{
 ; }
 
 ; 提示词 prompt
-::vaip::{
-    ToolTip "1 项目开始`n2 切新窗口"
+; ::vaip::{
+;     ToolTip "1 项目开始`n2 切新窗口"
 
-    ih := InputHook("L1 T5")
-    ih.Start()
-    ih.Wait()
+;     ih := InputHook("L1 T5")
+;     ih.Start()
+;     ih.Wait()
 
-    ToolTip
+;     ToolTip
 
-    switch ih.Input {
-        case "1":
-            SendText("请先读取并学习本项目的文档 然后我们会开始下一步的工作")
-        case "2":
-            SendText("判断当前对话是否应该切新窗口。只回答：是否建议切 + 原因 + 如果切，给我一份使用markdown块引用的 500 字以内的交接摘要")
-    }
-}
-
+;     switch ih.Input {
+;         case "1":
+;             SendText("请先读取并学习本项目的文档 然后我们会开始下一步的工作")
+;         case "2":
+;             SendText("判断当前对话是否应该切新窗口。只回答：是否建议切 + 原因 + 如果切，给我一份使用markdown块引用的 500 字以内的交接摘要")
+;     }
+; }
 
 
 

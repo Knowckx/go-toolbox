@@ -5,3 +5,6 @@
 
 
 ```
+
+### 同步ob的设置
+.\pc-init\win10_script\obsidian_setting_sync.ps1
