@@ -11,6 +11,7 @@ chrome := "C:\Program Files\Google\Chrome\Application\chrome.exe"
 Sleep 500
 Send "^#{Right}"
 Run 'obsidian://open?vault=1-指南针'
+Run 'C:\Users\AA\Desktop\foobar2000 plus (x64).lnk'
 
 Run Format(
     '"{}" --new-window "{}" "{}"',
