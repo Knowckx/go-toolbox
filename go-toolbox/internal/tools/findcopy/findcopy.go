@@ -123,12 +123,14 @@ func (r *Runner) visitFile(path string) error {
 
 	targetPath := filepath.Join(r.dstRoot, filepath.Base(path))
 	targetKey := strings.ToLower(targetPath)
+	// 防止本次运行内，两个源文件撞到同一个目标名
 	if firstSource, exists := r.seenTargets[targetKey]; exists {
-		fmt.Printf("duplicate file skipped: %s -> %s (already used by %s)\n", path, targetPath, firstSource)
+		fmt.Printf("duplicate file skipped: %s (already used by %s)\n", path, firstSource)
 		return nil
 	}
+	// 防止覆盖磁盘上已经存在的目标文件。
 	if _, err := os.Stat(targetPath); err == nil {
-		fmt.Printf("duplicate file skipped: %s -> %s (already exists)\n", path, targetPath)
+		fmt.Printf("duplicate file skipped: %s (already exists)\n", path)
 		return nil
 	}
 	r.seenTargets[targetKey] = path
