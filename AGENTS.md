@@ -36,12 +36,4 @@
   - 目标子文件夹名
   - 可选
 
-### 示例
-
-```powershell
-go build -o .\bin\find-and-copy.exe .\cmd\find-and-copy
-.\bin\find-and-copy.exe -src E:\data\A -ext .txt
-.\bin\find-and-copy.exe -src E:\data\A -ext .txt -folder out
-
-```
 

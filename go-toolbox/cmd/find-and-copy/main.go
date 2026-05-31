@@ -9,7 +9,9 @@ import (
 
 func main() {
 	log.SetFlags(0)
-	if err := findcopy.Run(os.Args[1:]); err != nil {
+
+	runner := &findcopy.Runner{}
+	if err := runner.Run(os.Args[1:]); err != nil {
 		log.Fatal(err)
 	}
 }

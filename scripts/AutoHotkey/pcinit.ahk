@@ -4,7 +4,6 @@ vscode := "C:\Users\AA\AppData\Local\Programs\Microsoft VS Code\Code.exe"
 chrome := "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 
-
 ; Exit
 
 ; ----- 桌面2 -----
@@ -13,12 +12,16 @@ Send "^#{Right}"
 Run 'obsidian://open?vault=1-指南针'
 Run 'C:\Users\AA\Desktop\foobar2000 plus (x64).lnk'
 
+Run Format('"{}" -n "{}"', vscode, "E:\dev\golang\go-toolbox\")
+
 Run Format(
     '"{}" --new-window "{}" "{}"',
     chrome,
+    "https://www.youtube.com/watch?v=9PjQb2BUtdk&list=PLbbmrT345ku7kftNZz_xXH-ja0fWn6EoT",
     "https://chatgpt.com/",
     "https://wx.mail.qq.com/"
 )
+
 
 
 ; ----- 桌面1 -----
