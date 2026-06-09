@@ -12,7 +12,8 @@ cd go-toolbox
 go build -o E:\dev\bin\find-and-copy.exe .\cmd\find-and-copy
 
 # 使用
-find-and-copy.exe -ext .mp3 -src "D:\AsukaFiles\AsuMusic2.0\新音乐\1-临时_全部"
+find-and-copy.exe -ext .mp3 -src "D:\AsukaFiles\AsuMusic2.0\新音乐\临时1_全部"
+
 ```
 
 

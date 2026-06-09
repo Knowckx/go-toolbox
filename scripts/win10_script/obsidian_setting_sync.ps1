@@ -8,10 +8,9 @@ $MasterVaultPath = "D:\AsukaFiles\AsuObsidianStore\1-指南针"
 # 指定需要同步的目标仓库列表
 $TargetVaults = @(
     @{ Name = "2-投资"; Path = "D:\AsukaFiles\AsuObsidianStore\2-投资" },
-    @{ Name = "3-科技数码"; Path = "D:\AsukaFiles\AsuObsidianStore\3-科技数码" },
+    @{ Name = "3-科技开发"; Path = "D:\AsukaFiles\AsuObsidianStore\3-科技开发" },
     @{ Name = "4-绿洲"; Path = "D:\AsukaFiles\AsuObsidianStore\4-绿洲" },
     @{ Name = "5-生活"; Path = "D:\AsukaFiles\AsuObsidianStore\5-生活" },
-    @{ Name = "6-打工人"; Path = "D:\AsukaFiles\AsuObsidianStore\6-打工人" },
     @{ Name = "alchemy-doc"; Path = "E:\dev\py\alchemy-dev\alchemy_docs" }
 )
 
