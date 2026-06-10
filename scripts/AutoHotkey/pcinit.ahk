@@ -10,7 +10,7 @@ chrome := "C:\Program Files\Google\Chrome\Application\chrome.exe"
 Sleep 500
 Send "^#{Right}"
 Run 'obsidian://open?vault=1-指南针'
-Run 'C:\Users\AA\Desktop\foobar2000 plus (x64).lnk'
+; Run 'C:\Users\AA\Desktop\foobar2000 plus (x64).lnk'
 
 Run Format('"{}" -n "{}"', vscode, "E:\dev\golang\go-toolbox\")
 
@@ -25,13 +25,14 @@ Run Format(
 
 
 ; ----- 桌面1 -----
-Sleep 2000
+Sleep 5000
 Send "^#{Left}"
 
 Run 'obsidian://open?vault=2-投资'
 
 Run Format('"{}" -n "{}"', vscode, "E:\dev\py\alchemy-dev")
-Run Format('"{}" -n "{}"', vscode, "E:\dev\py\alchemy-dev\python")
+Run Format('"{}" -n "{}"', vscode, "E:\dev\py\alchemy-dev\py_gateway")
+Run Format('"{}" -n "{}"', vscode, "E:\dev\py\alchemy-dev\go_trade")
 
 
 Run Format(
