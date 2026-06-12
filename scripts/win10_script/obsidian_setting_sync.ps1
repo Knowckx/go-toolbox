@@ -129,6 +129,13 @@ foreach ($Vault in $TargetVaults) {
                 }
                 Write-Host "  [成功] 已同步插件目录（已过滤排除项）" -ForegroundColor Green
             }
+            elseif ($Item -eq "community-plugins.json") {
+                # 已启用插件列表需要和排除目录保持一致，避免目标库启用不存在的插件
+                $PluginList = Get-Content -LiteralPath $SourceItemPath -Raw | ConvertFrom-Json
+                $FilteredPluginList = @($PluginList | Where-Object { $ExcludedPlugins -notcontains $_ })
+                $FilteredPluginList | ConvertTo-Json | Set-Content -LiteralPath $TargetItemPath -Encoding utf8
+                Write-Host "  [成功] 已同步文件: $Item（已过滤排除项）" -ForegroundColor Green
+            }
             else {
                 # 对于非插件项（如 snippets 或单独的 json 文件），直接整桶复制
                 Copy-Item -Path $SourceItemPath -Destination $TargetItemPath -Recurse -Force -ErrorAction Stop
