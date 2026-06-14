@@ -12,8 +12,10 @@ Send "^#{Right}"
 Run 'obsidian://open?vault=1-指南针'
 ; Run 'C:\Users\AA\Desktop\foobar2000 plus (x64).lnk'
 
+Sleep 500
 Run Format('"{}" -n "{}"', vscode, "E:\dev\golang\go-toolbox\")
 
+Sleep 500
 Run Format(
     '"{}" --new-window "{}" "{}"',
     chrome,
@@ -25,14 +27,18 @@ Run Format(
 
 
 ; ----- 桌面1 -----
-Sleep 5000
+Sleep 3000
 Send "^#{Left}"
 
 Run 'obsidian://open?vault=2-投资'
+Sleep 500
 
 Run Format('"{}" -n "{}"', vscode, "E:\dev\py\alchemy-dev")
+Sleep 500
 Run Format('"{}" -n "{}"', vscode, "E:\dev\py\alchemy-dev\py_gateway")
+Sleep 500
 Run Format('"{}" -n "{}"', vscode, "E:\dev\py\alchemy-dev\go_trade")
+Sleep 500
 
 
 Run Format(
@@ -41,7 +47,7 @@ Run Format(
     "https://chatgpt.com/",
     "https://chatgpt.com/codex/cloud/settings/analytics#usage"
 )
-
+Sleep 500
 Run "codex app"
 
 

@@ -156,4 +156,3 @@ foreach ($Vault in $TargetVaults) {
 
 Write-Host "`n所有操作已完成！" -ForegroundColor Cyan
 
-$userInput = Read-Host -Prompt "Bye,Bye...按下Enter以退出"

@@ -18,5 +18,7 @@ find-and-copy.exe -ext .mp3 -src "D:\AsukaFiles\AsuMusic2.0\新音乐\临时1_�
 
 
 ### 同步ob的设置
-scripts\win10_script\obsidian_setting_sync.ps1
+```
+.\scripts\win10_script\obsidian_setting_sync.ps1
+```
 
