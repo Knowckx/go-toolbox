@@ -22,10 +22,9 @@ scoop update
 scoop install aria2 # 安装并启用多线程下载
 scoop config aria2-enabled true
 
-# scoop install v2rayn-desktop # 梯子软件 Avalonia版本 跨平台UI
 scoop install extras/clash-verge-rev # 另一个梯子软件
-scoop install extras/proxybridge # 流量反向代理
-
+# scoop install v2rayn-desktop # 梯子软件 Avalonia版本 跨平台UI
+# scoop install extras/proxybridge # 流量反向代理
 
 
 
@@ -58,7 +57,7 @@ git config --global https.proxy socks5://127.0.0.1:7890
 
 # -------------> 基础命令工具
 scoop install ripgrep # rg命令 gpt经常需要
-
+scoop install extras/lockhunter # 解除锁定
 
 
 # -------------> python
@@ -77,11 +76,10 @@ go env -w GOPROXY=https://goproxy.cn,direct
 # scoop install mingw # MinGW-w64 C语言编译器 有一些包会需要
 
 # -------------> 前端web相关
-scoop install nodejs
-scoop install pnpm  
-# 设置淘宝镜像源
-pnpm config set registry https://registry.npmmirror.com
-pnpm setup # 主要是配置下载的包放到哪 并且设置path环境变量
+scoop install main/nodejs-lts
+scoop install main/pnpm
+# pnpm config set registry https://registry.npmmirror.com # 设置淘宝镜像源
+# pnpm setup # 主要是配置下载的包放到哪 并且设置path环境变量
 pnpm add -g yalc
 
 scoop install mkcert # 用于生成localhost可用的https证书

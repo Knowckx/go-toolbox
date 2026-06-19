@@ -8,7 +8,6 @@ Write-Host "--- 准备初始化目录结构 ---" -ForegroundColor Cyan
 
 # 定义需要创建的路径列表
 $out = @(
-    "D:\app_data", # 放各种软件的数据
     "D:\downloads", # 默认的下载目录
 
     "D:\asu_files", # 个人数据 方便迁移
@@ -16,9 +15,11 @@ $out = @(
     "D:\asu_files\obsidian_store", # 笔记
     "D:\asu_files\green_soft", # 绿色软件
 
+    "D:\app_data\", # 放各种软件的数据
+    "D:\app_data\_pkg_cache", # 各种软件缓存
+
     "E:\dev", # 开发根目录
     "E:\dev\bin", # 加入path 放各种二进制执行文件
-    "E:\dev\_pkg_cache", # 各语言包管理软件的缓存
     "E:\dev\py\vendor", # python第三方包 | vendor 小贩 | 会自动创建父文件夹
     "E:\dev\nodejs", # node项目
     "E:\dev\github_projs", # 从github下载的社区项目
