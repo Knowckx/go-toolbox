@@ -38,6 +38,7 @@ scoop install extras/telegram
 scoop install extras/gopeed
 scoop install extras/audacity
 scoop install extras/obsidian
+scoop install extras/cherry-studio
 # --------------------------> 编程相关
 # -------------> git
 scoop install git
