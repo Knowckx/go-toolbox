@@ -84,6 +84,6 @@ scoop install main/pnpm
 pnpm add -g yalc
 
 scoop install mkcert # 用于生成localhost可用的https证书
-
+scoop install main/task # 混合语言项目的命令编排
 
 

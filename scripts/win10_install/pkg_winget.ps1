@@ -12,6 +12,11 @@ scoop install winget
 # 安装PowerShell7
 winget install --id Microsoft.PowerShell -e --source winget --proxy http://127.0.0.1:7890
 
+# 关闭PowerShell升级提示  设置成只提示更新LTS版本
+[Environment]::SetEnvironmentVariable('POWERSHELL_UPDATECHECK', 'LTS', 'User')
+
+
+
 # 升级 PowerShell7
 # winget upgrade --id Microsoft.PowerShell
 
