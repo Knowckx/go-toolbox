@@ -47,12 +47,11 @@ git config --global user.email knowckx@foxmail.com
 git config --global core.autocrlf input # 在提交时把CRLF转换成LF，签出时不转换
 git config --global core.fileMode false # 忽略文件权限的变化
 git config --global core.ignorecase false # 启用文件名大小写敏感 2025-05-19 python被坑了一次
-git config --global http.proxy socks5://127.0.0.1:7890
-git config --global https.proxy socks5://127.0.0.1:7890
 
-
-# git config --global --unset http.proxy;
-# git config --global --unset https.proxy;
+# 配置代理  http.proxy 同时也控制 https
+# socks5h 是指DNS也走代理侧
+git config --global http.proxy socks5h://127.0.0.1:7890
+# git config --global --unset http.proxy; # 取消代理
 
 
 
