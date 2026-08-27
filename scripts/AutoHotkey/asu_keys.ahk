@@ -4,15 +4,6 @@
 ; ==================== 快捷键配置 ====================
 ; 符号说明：# = Win键, + = Shift键, ^ = Ctrl键, ! = Alt键
 
-; --------------------------------------------------------------
-; 媒体播放/暂停 
-<#<!Space::Send "{Media_Play_Pause}"
-
-; 禁用Insert
-Insert::{
-    ToolTip "Insert 已禁用"
-    SetTimer () => ToolTip(), -800
-}
 
 ; 1. 加载同一目录下的 DLL 动态链接库
 dllPath := A_ScriptDir . "\dll\VirtualDesktopAccessor.dll"
@@ -32,6 +23,7 @@ hDll := DllCall("LoadLibrary", "Str", dllPath, "Ptr")
 ; ====================================================
 
 MoveWindowToAdjacentDesktop(offset, follow := true) {
+    global dllPath
     ; 获取当前活动窗口句柄
     hwnd := WinExist("A")
     if !hwnd
@@ -81,4 +73,41 @@ MoveWindowToAdjacentDesktop(offset, follow := true) {
 
 
 
+; ==================== 快捷键--针对obsidian移除空行 ====================
+#HotIf WinActive("ahk_exe Obsidian.exe")
 
+^!v::{
+    ToolTip "移除空行"
+
+    saved := ClipboardAll()
+
+    text := A_Clipboard
+
+    ; 统一换行
+    text := StrReplace(text, "`r`n", "`n")
+    text := StrReplace(text, "`r", "`n")
+
+    ; 删除所有空白行
+    text := RegExReplace(text, "m)^[ \t]*\n", "")
+
+    ; 临时写回剪贴板并粘贴
+    A_Clipboard := text
+    ClipWait 0.5
+    Send "^v"
+
+    ; 等待 Obsidian 读取剪贴板后恢复
+    Sleep 100
+    A_Clipboard := saved
+}
+
+#HotIf
+
+; ==================== 禁用Insert ====================
+Insert::{
+    ToolTip "Insert 已禁用"
+    SetTimer () => ToolTip(), -800
+}
+
+
+; ==================== 媒体播放/暂停  ====================
+<#<!Space::Send "{Media_Play_Pause}"

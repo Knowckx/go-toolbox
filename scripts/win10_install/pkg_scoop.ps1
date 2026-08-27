@@ -64,6 +64,8 @@ scoop install extras/lockhunter # 解除锁定
 scoop install python313
 scoop install main/uv
 [Environment]::SetEnvironmentVariable("UV_CACHE_DIR", "E:\dev\_pkg_cache\uv-cache", "User")
+[Environment]::SetEnvironmentVariable("UV_TOOL_BIN_DIR", "E:\dev\bin", "User")
+
 
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple # 使用清华镜像源
 
@@ -80,8 +82,6 @@ scoop install main/nodejs-lts
 scoop install main/pnpm
 # pnpm config set registry https://registry.npmmirror.com # 设置淘宝镜像源
 # pnpm setup # 主要是配置下载的包放到哪 并且设置path环境变量
-pnpm add -g yalc
-
 scoop install mkcert # 用于生成localhost可用的https证书
 scoop install main/task # 混合语言项目的命令编排
 
