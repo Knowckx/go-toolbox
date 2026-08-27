@@ -73,34 +73,6 @@ MoveWindowToAdjacentDesktop(offset, follow := true) {
 
 
 
-; ==================== 快捷键--针对obsidian移除空行 ====================
-#HotIf WinActive("ahk_exe Obsidian.exe")
-
-^!v::{
-    ToolTip "移除空行"
-
-    saved := ClipboardAll()
-
-    text := A_Clipboard
-
-    ; 统一换行
-    text := StrReplace(text, "`r`n", "`n")
-    text := StrReplace(text, "`r", "`n")
-
-    ; 删除所有空白行
-    text := RegExReplace(text, "m)^[ \t]*\n", "")
-
-    ; 临时写回剪贴板并粘贴
-    A_Clipboard := text
-    ClipWait 0.5
-    Send "^v"
-
-    ; 等待 Obsidian 读取剪贴板后恢复
-    Sleep 100
-    A_Clipboard := saved
-}
-
-#HotIf
 
 ; ==================== 禁用Insert ====================
 Insert::{
