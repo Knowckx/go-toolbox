@@ -83,3 +83,23 @@ Insert::{
 
 ; ==================== 媒体播放/暂停  ====================
 <#<!Space::Send "{Media_Play_Pause}"
+
+
+
+; ==================== 解决GPT control + shift + v 粘贴两次 ====================
+#HotIf WinActive("ahk_exe ChatGPT.exe")
+$^+v::{
+    saved := ClipboardAll()
+    A_Clipboard := A_Clipboard
+
+    KeyWait("Ctrl")
+    KeyWait("Shift")
+    Send("^v")
+
+    ToolTip("AHK · 纯文本")
+    SetTimer(() => ToolTip(), -700)
+
+    Sleep(100)
+    A_Clipboard := saved
+}
+#HotIf
